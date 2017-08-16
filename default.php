@@ -4,7 +4,7 @@
 //Minimum request
 //Can be city,state,country, zip/postal code, IP address, longtitude/latitude. If long/lat are 2 elements, they will be assembled. IP address is one element.
 $loc_array= Array("New York","ny");		//data validated in foreach. 
-$api_key="b1789c3b22fa49b8b78130104171508";		//should be embedded in your code, so no data validation necessary, otherwise if(strlen($api_key)!=24)
+$api_key="b43261f1ced54ae6b1e95314171608";		//should be embedded in your code, so no data validation necessary, otherwise if(strlen($api_key)!=24)
 $num_of_days=1;					//data validated in sprintf
 
 $loc_safe=Array();
