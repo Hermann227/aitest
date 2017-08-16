@@ -20,9 +20,12 @@ if($method == 'POST'){
 
 	$json=json_decode($json_reply);
 	
+	$originalDate = $json->{'data'}->{'weather'}['0']->{'date'};
+	$newDate = date("d.m.Y", strtotime($originalDate));
+	
 	$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius.", 
 		$json->{'data'}->{'request'}['0']->{'query'}, 
-		$json->{'data'}->{'weather'}['0']->{'date'}, 
+		$newDate, 
 		$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
 
 	$response = new \stdClass();
