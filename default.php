@@ -23,7 +23,7 @@ print $basicurl . "<br />\n";
 $premiumurl=sprintf('http://api.worldweatheronline.com/premium/v1/premium-weather-V2.ashx?key=%s&q=%s&num_of_days=%s&format=json', 
 	$api_key, $loc_string, intval($num_of_days));
 
-$json_reply = file_get_contents($basicurl);
+$json_reply = file_get_contents($premiumurl);
 $json=json_decode($json_reply);
 printf("<p>Current wind speed is %s mph blowing to %s</p>", 
 	//~ $json->{'data'}->{'current_condition'}->{'windspeedMiles'}, $json->{'data'}->{'current_condition'}->{'winddir16Point'} );
