@@ -12,4 +12,12 @@ $json=json_decode($json_reply);
 print "<pre>";
 print_r($json);
 print "</pre>";
+
+$sourceText = $json[0][0][1];
+$translatedText = $json[0][0][0];
+
+$speech = sprintf("Der Text %s heißt übersetzt %s", 
+		$sourceText, 
+		$translatedText);
+
 ?> 
