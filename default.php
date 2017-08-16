@@ -27,7 +27,7 @@ print_r($json_reply);
 print "</pre>";
 
 $json=json_decode($json_reply);
-printf("<p>Die Temperatur in %s am %s beträgt %s Grad Celsius.</p>", 
+printf("<p>Die Temperatur in %s am %s betrÃ¤gt %s Grad Celsius.</p>", 
 	//~ $json->{'data'}->{'current_condition'}->{'windspeedMiles'}, $json->{'data'}->{'current_condition'}->{'winddir16Point'} );
 	$json->{'data'}->{'request'}['0']->{'query'}, 
 	$json->{'data'}->{'weather'}['0']->{'date'}, 
