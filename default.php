@@ -27,7 +27,7 @@ print_r($json_reply);
 print "</pre>";
 
 $json=json_decode($json_reply);
-$json_webhook_reply = printf("<p>Die Temperatur in %s am %s beträgt %s Grad Celsius.</p>", 
+$json_webhook_reply = sprintf("<p>Die Temperatur in %s am %s beträgt %s Grad Celsius.</p>", 
 	$json->{'data'}->{'request'}['0']->{'query'}, 
 	$json->{'data'}->{'weather'}['0']->{'date'}, 
 	$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
