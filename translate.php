@@ -1,5 +1,5 @@
 <?php
-$premiumurl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=Heute;";
+$premiumurl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=Heute ist Mittwoch und das Wetter ist herrlich;";
 
 $json_reply = file_get_contents($premiumurl);
 
