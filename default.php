@@ -20,8 +20,10 @@ $basicurl=sprintf('http://api.worldweatheronline.com/free/v1/weather.ashx?key=%s
 print $basicurl . "<br />\n";
 
 //Premium API
-$premiumurl=sprintf('http://api.worldweatheronline.com/premium/v1/premium-weather-V2.ashx?key=%s&q=%s&num_of_days=%s&format=json', 
+$premiumurl=sprintf('http://api.worldweatheronline.com/premium/v1/weather.ashx?key=%s&q=%s&num_of_days=%s&format=json', 
 	$api_key, $loc_string, intval($num_of_days));
+	
+print $premiumurl . "<br />\n";
 
 $json_reply = file_get_contents($premiumurl);
 $json=json_decode($json_reply);
