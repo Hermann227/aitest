@@ -6,7 +6,7 @@ if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-	$loc = $json->result->parameters->address->subadmin-area;
+	$loc = $json->result->parameters->address->city;
 	$date = $json->result->parameters->date-time;
 	
 	//Can be city,state,country, zip/postal code, IP address, longtitude/latitude. If long/lat are 2 elements, they will be assembled. IP address is one element.
