@@ -20,4 +20,5 @@ $speech = sprintf("Der Text %s heißt übersetzt %s",
 		$sourceText, 
 		$translatedText);
 
+print $speech;
 ?> 
