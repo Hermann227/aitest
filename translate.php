@@ -7,5 +7,9 @@ print "<pre>";
 print_r($json_reply);
 print "</pre>";
 
+$json=json_decode($json_reply);
 
+print "<pre>";
+print_r($json);
+print "</pre>";
 ?> 
