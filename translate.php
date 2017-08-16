@@ -1,7 +1,9 @@
 <?php
-reqText = urlencode("Heute ist Mittwoch und das Wetter ist herrlich");
+$reqText = urlencode("Heute ist Mittwoch und das Wetter ist herrlich");
 
-$premiumurl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=" . reqText;
+print $reqText;
+
+$premiumurl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=" . $reqText;
 
 $json_reply = file_get_contents($premiumurl);
 
