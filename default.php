@@ -27,14 +27,12 @@ print_r($json_reply);
 print "</pre>";
 
 $json=json_decode($json_reply);
-printf("<p>Die Temperatur in %s am %s beträgt %s Grad Celsius.</p>", 
-	//~ $json->{'data'}->{'current_condition'}->{'windspeedMiles'}, $json->{'data'}->{'current_condition'}->{'winddir16Point'} );
+$json_webhook_reply = printf("<p>Die Temperatur in %s am %s beträgt %s Grad Celsius.</p>", 
 	$json->{'data'}->{'request'}['0']->{'query'}, 
 	$json->{'data'}->{'weather'}['0']->{'date'}, 
 	$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
-//~ print "<script>var weather= JSON.parse(";
-//~ print $json_reply;
-//~ print ");</script>";
+
+print $json_webhook_reply;
 
 print "<pre>";
 print_r($json);
