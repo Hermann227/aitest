@@ -1,5 +1,7 @@
 <?php
-$premiumurl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=Heute ist Mittwoch und das Wetter ist herrlich;";
+reqText = urlencode(Heute ist Mittwoch und das Wetter ist herrlich);
+
+$premiumurl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=" . reqText;
 
 $json_reply = file_get_contents($premiumurl);
 
@@ -14,10 +16,10 @@ print_r($json);
 print "</pre>";
 
 $sourceText = $json[0][0][1];
-$sourceText = substr_replace($sourceText ,"",-1);
+//$sourceText = substr_replace($sourceText ,"",-1);
 
 $translatedText = $json[0][0][0];
-$translatedText = substr_replace($translatedText ,"",-1);
+//$translatedText = substr_replace($translatedText ,"",-1);
 
 $speech = sprintf("Der Text %s heißt übersetzt %s", 
 		$sourceText, 
