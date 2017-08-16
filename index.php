@@ -5,28 +5,61 @@ $method = $_SERVER['REQUEST_METHOD'];
 if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
-
-	$loc = $json->result->parameters->address->city;
-	$date = $json->result->parameters->date-time;
 	
-	//Can be city,state,country, zip/postal code, IP address, longtitude/latitude. If long/lat are 2 elements, they will be assembled. IP address is one element.
-	$api_key="b43261f1ced54ae6b1e95314171608";		//should be embedded in your code, so no data validation necessary, otherwise if(strlen($api_key)!=24)
-
-	//Premium API
-	$premiumurl=sprintf('http://api.worldweatheronline.com/premium/v1/weather.ashx?key=%s&q=%s&date=%s&format=json', 
-		$api_key, $loc, $date);
-		
-	$json_reply = file_get_contents($premiumurl);
-
-	$json=json_decode($json_reply);
+	$action = $json->result->action;
 	
-	$originalDate = $json->{'data'}->{'weather'}['0']->{'date'};
-	$newDate = date("d.m.Y", strtotime($originalDate));
-	
-	$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius.", 
-		$json->{'data'}->{'request'}['0']->{'query'}, 
-		$newDate, 
-		$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
+	switch ($action) {
+		case 'translate.text':
+			$loc = $json->result->parameters->address->city;
+			$date = $json->result->parameters->date-time;
+			
+			//Can be city,state,country, zip/postal code, IP address, longtitude/latitude. If long/lat are 2 elements, they will be assembled. IP address is one element.
+			$api_key="b43261f1ced54ae6b1e95314171608";		//should be embedded in your code, so no data validation necessary, otherwise if(strlen($api_key)!=24)
+
+			//Premium API
+			$premiumurl=sprintf('http://api.worldweatheronline.com/premium/v1/weather.ashx?key=%s&q=%s&date=%s&format=json', 
+				$api_key, $loc, $date);
+				
+			$json_reply = file_get_contents($premiumurl);
+
+			$json=json_decode($json_reply);
+			
+			$originalDate = $json->{'data'}->{'weather'}['0']->{'date'};
+			$newDate = date("d.m.Y", strtotime($originalDate));
+			
+			$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius.", 
+				$json->{'data'}->{'request'}['0']->{'query'}, 
+				$newDate, 
+				$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
+			break;
+
+		case 'weather ':
+			$sourceLanguage = $json->result->parameters->lang-from;
+			$sourceLanguage = substr($sourceLanguage, 0, 2);
+			$targetLanguage = $json->result->parameters->lang-to;
+			$targetLanguage = substr($targetLanguage, 0, 2);
+			$reqText = $json->result->resolvedQuery;
+			$reqText = urlencode(reqText);
+			
+			$premiumurl = sprintf('https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&dt=t&q=%s', 
+				$sourceLanguage, $targetLanguage, $reqText);
+
+			$json_reply = file_get_contents($premiumurl);
+
+			$json=json_decode($json_reply);
+			
+			$sourceText = $json[0][0][1];
+			$translatedText = $json[0][0][0];
+			
+			$speech = sprintf("Der Text \"%s\" heißt übersetzt \"%s.\"", 
+				$sourceText, 
+				$translatedText);
+			break;
+
+		default:
+			$speech = "Sorry, I didnt get that. Please ask me something else.";
+			break;
+	} 
 
 	$response = new \stdClass();
 	$response->speech = $speech;
