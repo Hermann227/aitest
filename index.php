@@ -11,8 +11,7 @@ if($method == 'POST'){
 	switch ($action) {
 		case 'weather':
 			$loc = $json->result->parameters->address->city;
-			$datum = $json->result->parameters->date-time;
-
+			$datum = $json->result->parameters->datetime;
 			
 			//Can be city,state,country, zip/postal code, IP address, longtitude/latitude. If long/lat are 2 elements, they will be assembled. IP address is one element.
 			$api_key="b43261f1ced54ae6b1e95314171608";		//should be embedded in your code, so no data validation necessary, otherwise if(strlen($api_key)!=24)
@@ -26,21 +25,21 @@ if($method == 'POST'){
 			$json=json_decode($json_reply);
 			
 			$originalDate = $json->{'data'}->{'weather'}['0']->{'date'};
-			//$newDate = date("d.m.Y", strtotime($originalDate));
+			$newDate = date("d.m.Y", strtotime($originalDate));
 			//$date = new DateTime($originalDate);
 			//$newDate = $date->format('d.m.Y');
 			
 			$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius." . $premiumurl, 
 				$json->{'data'}->{'request'}['0']->{'query'}, 
-				$datum, 
+				$newDate, 
 				$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
 			break;
 
 		case 'translate.text':
 			$sourceLanguage = $json->result->parameters->langfrom;
-			//$sourceLanguage = substr($sourceLanguage, 0, 2);
+			$sourceLanguage = substr($sourceLanguage, 0, 2);
 			$targetLanguage = $json->result->parameters->langto;
-			//$targetLanguage = substr($targetLanguage, 0, 2);
+			$targetLanguage = substr($targetLanguage, 0, 2);
 			$reqText = $json->result->parameters->text;
 			$reqText = urlencode($reqText);
 			
