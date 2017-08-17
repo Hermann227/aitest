@@ -36,6 +36,9 @@ if($method == 'POST'){
 			$sourceLanguage = substr($sourceLanguage, 0, 2);
 			$targetLanguage = $json->result->parameters->langto;
 			$targetLanguage = substr($targetLanguage, 0, 2);
+			if ($targetLanguage == "Sp"){
+				$targetLanguage = "es"
+			}
 			$reqText = $json->result->parameters->text;
 			$reqText = urlencode($reqText);
 			
