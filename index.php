@@ -38,9 +38,9 @@ if($method == 'POST'){
 
 		case 'translate.text':
 			$sourceLanguage = $json->result->parameters->lang-from;
-			$sourceLanguage = substr($sourceLanguage, 0, 2);
+			//$sourceLanguage = substr($sourceLanguage, 0, 2);
 			$targetLanguage = $json->result->parameters->lang-to;
-			$targetLanguage = substr($targetLanguage, 0, 2);
+			//$targetLanguage = substr($targetLanguage, 0, 2);
 			$reqText = $json->result->parameters->text;
 			$reqText = urlencode($reqText);
 			
