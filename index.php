@@ -30,7 +30,7 @@ if($method == 'POST'){
 			//$date = new DateTime($originalDate);
 			//$newDate = $date->format('d.m.Y');
 			
-			$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius.", 
+			$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius." . $premiumurl, 
 				$json->{'data'}->{'request'}['0']->{'query'}, 
 				$datum, 
 				$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
@@ -54,7 +54,7 @@ if($method == 'POST'){
 			$sourceText = $json[0][0][1];
 			$translatedText = $json[0][0][0];
 			
-			$speech = sprintf("Der Text \"%s\" heißt übersetzt \"%s\".", 
+			$speech = sprintf("Der Text \"%s\" heißt übersetzt \"%s\"." . $premiumurl, 
 				$sourceText, 
 				$translatedText );
 			break;
