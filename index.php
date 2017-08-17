@@ -31,7 +31,7 @@ if($method == 'POST'){
 			
 			$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius.", 
 				$json->{'data'}->{'request'}['0']->{'query'}, 
-				$originalDate, 
+				$date, 
 				$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
 			break;
 
