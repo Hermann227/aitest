@@ -40,7 +40,7 @@ if($method == 'POST'){
 			$sourceLanguage = substr($sourceLanguage, 0, 2);
 			$targetLanguage = $json->result->parameters->lang-to;
 			$targetLanguage = substr($targetLanguage, 0, 2);
-			$reqText = $json->result->resolvedQuery;
+			$reqText = $json->result->parameters->text;
 			$reqText = urlencode(reqText);
 			
 			$premiumurl = sprintf('https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&dt=t&q=%s', 
