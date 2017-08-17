@@ -18,7 +18,7 @@ if($method == 'POST'){
 
 			//Premium API
 			$premiumurl=sprintf('http://api.worldweatheronline.com/premium/v1/weather.ashx?key=%s&q=%s&date=%s&format=json', 
-				$api_key, $loc, $datum);
+				$api_key, $loc, $datum );
 				
 			$json_reply = file_get_contents($premiumurl);
 
@@ -44,7 +44,7 @@ if($method == 'POST'){
 			$reqText = urlencode(reqText);
 			
 			$premiumurl = sprintf('https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&dt=t&q=%s', 
-				$sourceLanguage, $targetLanguage, $reqText);
+				$sourceLanguage, $targetLanguage, $reqText );
 
 			$json_reply = file_get_contents($premiumurl);
 
@@ -53,9 +53,9 @@ if($method == 'POST'){
 			$sourceText = $json[0][0][1];
 			$translatedText = $json[0][0][0];
 			
-			$speech = sprintf("Der Text \"%s\" heißt übersetzt \"%s.\"", 
+			$speech = sprintf("Der Text \"%s\" heißt übersetzt \"%s\".", 
 				$sourceText, 
-				$translatedText);
+				$translatedText );
 			break;
 
 		default:
