@@ -25,7 +25,9 @@ if($method == 'POST'){
 			$json=json_decode($json_reply);
 			
 			$originalDate = $json->{'data'}->{'weather'}['0']->{'date'};
-			$newDate = date("d.m.Y", strtotime($originalDate));
+			//$newDate = date("d.m.Y", strtotime($originalDate));
+			$date = new DateTime($originalDate);
+			$newDate = $date->format('d.m.Y');
 			
 			$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius.", 
 				$json->{'data'}->{'request'}['0']->{'query'}, 
