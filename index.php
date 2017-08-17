@@ -9,7 +9,7 @@ if($method == 'POST'){
 	$action = $json->result->action;
 	
 	switch ($action) {
-		case 'translate.text':
+		case 'weather':
 			$loc = $json->result->parameters->address->city;
 			$date = $json->result->parameters->date-time;
 			
@@ -33,7 +33,7 @@ if($method == 'POST'){
 				$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
 			break;
 
-		case 'weather ':
+		case 'translate.text':
 			$sourceLanguage = $json->result->parameters->lang-from;
 			$sourceLanguage = substr($sourceLanguage, 0, 2);
 			$targetLanguage = $json->result->parameters->lang-to;
@@ -57,7 +57,7 @@ if($method == 'POST'){
 			break;
 
 		default:
-			$speech = "Sorry, I didnt get that. Please ask me something else.";
+			$speech = "Entschuldigung, ich konnte Ihre Frage nicht verstehen.";
 			break;
 	} 
 
