@@ -11,14 +11,14 @@ if($method == 'POST'){
 	switch ($action) {
 		case 'weather':
 			$loc = $json->result->parameters->address->city;
-			$date = $json->result->parameters->date-time;
+			$datum = $json->result->parameters->date-time;
 			
 			//Can be city,state,country, zip/postal code, IP address, longtitude/latitude. If long/lat are 2 elements, they will be assembled. IP address is one element.
 			$api_key="b43261f1ced54ae6b1e95314171608";		//should be embedded in your code, so no data validation necessary, otherwise if(strlen($api_key)!=24)
 
 			//Premium API
 			$premiumurl=sprintf('http://api.worldweatheronline.com/premium/v1/weather.ashx?key=%s&q=%s&date=%s&format=json', 
-				$api_key, $loc, $date);
+				$api_key, $loc, $datum);
 				
 			$json_reply = file_get_contents($premiumurl);
 
@@ -31,7 +31,7 @@ if($method == 'POST'){
 			
 			$speech = sprintf("Die Temperatur in %s am %s beträgt %s Grad Celsius.", 
 				$json->{'data'}->{'request'}['0']->{'query'}, 
-				$date, 
+				$datum, 
 				$json->{'data'}->{'current_condition'}['0']->{'temp_C'} );
 			break;
 
