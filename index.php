@@ -42,10 +42,9 @@ if($method == 'POST'){
 			$targetLanguage = $json->result->parameters->lang-to;
 			$targetLanguage = substr($targetLanguage, 0, 2);
 			$reqText = $json->result->parameters->text;
-			$reqText = urlencode(reqText);
+			$reqText = urlencode($reqText);
 			
-			$premiumurl = sprintf('https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&dt=t&q=%s', 
-				$sourceLanguage, $targetLanguage, $reqText );
+			$premiumurl = sprintf("https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&dt=t&q=%s", $sourceLanguage, $targetLanguage, $reqText );
 
 			$json_reply = file_get_contents($premiumurl);
 
