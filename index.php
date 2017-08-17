@@ -11,7 +11,7 @@ if($method == 'POST'){
 	switch ($action) {
 		case 'weather':
 			$loc = $json->result->parameters->address->city;
-			$datum = (string)$json->contexts[0]->date-time;
+			$datum = $json->result->parameters->date-time;
 
 			
 			//Can be city,state,country, zip/postal code, IP address, longtitude/latitude. If long/lat are 2 elements, they will be assembled. IP address is one element.
