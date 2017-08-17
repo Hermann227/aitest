@@ -11,8 +11,8 @@ if($method == 'POST'){
 	switch ($action) {
 		case 'weather':
 			$loc = $json->result->parameters->address->city;
-			$date = $json->result->parameters->date-time;
-			$datum = date("Y-m-d", strtotime($date));
+			$datum = (string)$json->result->parameters->date-time;
+
 			
 			//Can be city,state,country, zip/postal code, IP address, longtitude/latitude. If long/lat are 2 elements, they will be assembled. IP address is one element.
 			$api_key="b43261f1ced54ae6b1e95314171608";		//should be embedded in your code, so no data validation necessary, otherwise if(strlen($api_key)!=24)
